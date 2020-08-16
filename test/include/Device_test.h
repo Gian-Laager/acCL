@@ -2,7 +2,6 @@
 #define ACCL_DEVICE_TEST_H
 
 #include "test_pch.h"
-#include "Device.h"
 #include "acCL.h"
 
 class Device_test : public testing::Test

@@ -1,7 +1,3 @@
-//
-// Created by Gian Laager on 14.08.20.
-//
-
 #ifndef ACCL_DEVICE_H
 #define ACCL_DEVICE_H
 
@@ -18,8 +14,8 @@ namespace ac::cl::devices
         cl_device_id id;
     public:
         Device(cl_device_type deviceType = CL_DEVICE_TYPE_DEFAULT, cl_platform_id platformId = nullptr);
-        cl_device_type getDeviceType();
-        cl_device_id getDeviceId();
+        cl_device_type getDeviceType() const;
+        cl_device_id getDeviceId() const;
         void print_device_info();
     };
 

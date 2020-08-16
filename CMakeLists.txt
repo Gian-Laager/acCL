@@ -9,13 +9,16 @@ link_libraries(${OpenCL_LIBRARIES})
 
 set(SRC
         ${CMAKE_CURRENT_LIST_DIR}/src/acCL.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/src/Device.cpp)
+        ${CMAKE_CURRENT_LIST_DIR}/src/Device.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/Context.cpp)
 
 set(PCH ${CMAKE_CURRENT_LIST_DIR}/include/pch.h)
 
 set(HEAD
         ${CMAKE_CURRENT_LIST_DIR}/include/acCL.h
-        ${CMAKE_CURRENT_LIST_DIR}/include/Device.h)
+        ${CMAKE_CURRENT_LIST_DIR}/include/Device.h
+        ${CMAKE_CURRENT_LIST_DIR}/include/Context.h
+        )
 include_directories(${CMAKE_CURRENT_LIST_DIR}/include ${CMAKE_CURRENT_LIST_DIR}/src)
 
 add_library(${PROJECT_NAME} SHARED ${SRC} ${HEAD})
@@ -28,13 +31,15 @@ set(TEST_DIR
 
 set(TEST_SRC
         ${TEST_DIR}/src/test_main.cpp
-        ${TEST_DIR}/src/Device_test.cpp)
+        ${TEST_DIR}/src/Device_test.cpp
+        test/src/Context_test.cpp)
 
 set(TEST_PCH ${TEST_DIR}/include/test_pch.h)
 
 set(TEST_HEAD
         ${TEST_DIR}/include/Device_test.h
-        ${TEST_DIR}/include/unit_tests.h)
+        ${TEST_DIR}/include/unit_tests.h
+        test/include/Context_test.h)
 
 set(UNIT_TEST_TARGET unit_tests)
 

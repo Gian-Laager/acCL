@@ -10,24 +10,25 @@
 #include <iostream>
 #include <sstream>
 
-namespace ac::cl::errors
+namespace ac::cl::exceptions
 {
-    class clError : public std::exception
+    class clException : public std::exception
     {
         std::string message;
     public:
-        clError(std::string msg);
+        clException(std::string msg, int errorCode);
+        clException(int errorCode);
 
-        clError() = default;
+        clException() = default;
 
         const char* what() const noexcept override;
     };
 }
 
 #define clCall(clFunction, message) if (int errorCode = clFunction != CL_SUCCESS)                            \
-    throw ac::cl::errors::clError("Error code: " + std::to_string(errorCode) + "\nMessage: " + message)
+    throw ac::cl::exceptions::clException(errorCode, message)
 
 #define clCallNoMsg(clFunction) if (int errorCode = clFunction != CL_SUCCESS)                            \
-    throw ac::cl::errors::clError("Error code: " + std::to_string(errorCode))
+    throw ac::cl::exceptions::clException(errorCode)
 
 #endif //ACCL_PCH_H

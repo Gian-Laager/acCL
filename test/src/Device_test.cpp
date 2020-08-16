@@ -6,7 +6,7 @@ void Device_test::SetUp()
     {
         device = new ac::cl::devices::Device;
         device->print_device_info();
-    } catch (ac::cl::errors::clError&)
+    } catch (ac::cl::exceptions::clException&)
     {
         deviceTypeAvailable = false;
         std::cout << std::endl << "[Device_test] No default device available" << std::endl << std::endl;
@@ -19,7 +19,7 @@ void CpuDevice_test::SetUp()
     {
         device = new ac::cl::devices::CpuDevice;
         device->print_device_info();
-    } catch (ac::cl::errors::clError&)
+    } catch (ac::cl::exceptions::clException&)
     {
         deviceTypeAvailable = false;
         std::cout << std::endl << "[Device_test] No CPU device available" << std::endl << std::endl;
@@ -32,7 +32,7 @@ void GpuDevice_test::SetUp()
     {
         device = new ac::cl::devices::GpuDevice;
         device->print_device_info();
-    } catch (ac::cl::errors::clError&)
+    } catch (ac::cl::exceptions::clException&)
     {
         deviceTypeAvailable = false;
         std::cout << std::endl << "[Device_test] No GPU device available" << std::endl << std::endl;
@@ -46,7 +46,7 @@ void AcceleratorDevice_test::SetUp()
     {
         device = new ac::cl::devices::AcceleratorDevice;
         device->print_device_info();
-    } catch (ac::cl::errors::clError&)
+    } catch (ac::cl::exceptions::clException&)
     {
         deviceTypeAvailable = false;
         std::cout << std::endl << "[Device_test] No Accelerator device available" << std::endl << std::endl;

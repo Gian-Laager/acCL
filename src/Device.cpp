@@ -9,7 +9,7 @@ ac::cl::devices::Device::Device(cl_device_type deviceType, cl_platform_id platfo
     clGetDeviceIDs(platformId, deviceType, 1, &id, nullptr);
 }
 
-cl_device_type ac::cl::devices::Device::getDeviceType()
+cl_device_type ac::cl::devices::Device::getDeviceType() const
 {
     return deviceType;
 }
@@ -25,7 +25,7 @@ void ac::cl::devices::Device::print_device_info()
     std::cout << vendor << " : " << name << std::endl;
 }
 
-cl_device_id ac::cl::devices::Device::getDeviceId()
+cl_device_id ac::cl::devices::Device::getDeviceId() const
 {
     return id;
 }

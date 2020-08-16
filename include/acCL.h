@@ -3,6 +3,9 @@
 
 #include "pch.h"
 
-int test();
+namespace ac::cl
+{
+
+}
 
 #endif //ACCL_ACCL_H

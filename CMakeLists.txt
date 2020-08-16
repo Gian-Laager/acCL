@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(acCL)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(OpenCL)
 include_directories(${OpenCL_INCLUDE_DIRS})
@@ -9,14 +9,14 @@ link_libraries(${OpenCL_LIBRARIES})
 
 set(SRC
         ${CMAKE_CURRENT_LIST_DIR}/src/acCL.cpp
-        )
+        ${CMAKE_CURRENT_LIST_DIR}/src/Device.cpp)
 
 set(PCH ${CMAKE_CURRENT_LIST_DIR}/include/pch.h)
 
 set(HEAD
         ${CMAKE_CURRENT_LIST_DIR}/include/acCL.h
-        )
-include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+        ${CMAKE_CURRENT_LIST_DIR}/include/Device.h)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include ${CMAKE_CURRENT_LIST_DIR}/src)
 
 add_library(${PROJECT_NAME} SHARED ${SRC} ${HEAD})
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX _d)
@@ -28,19 +28,20 @@ set(TEST_DIR
 
 set(TEST_SRC
         ${TEST_DIR}/src/test_main.cpp
-        )
+        ${TEST_DIR}/src/Device_test.cpp)
 
 set(TEST_PCH ${TEST_DIR}/include/test_pch.h)
 
 set(TEST_HEAD
-        )
+        ${TEST_DIR}/include/Device_test.h
+        ${TEST_DIR}/include/unit_tests.h)
 
 set(UNIT_TEST_TARGET unit_tests)
 
 add_executable(${UNIT_TEST_TARGET} ${TEST_SRC} ${TEST_HEAD})
 target_precompile_headers(${UNIT_TEST_TARGET} PRIVATE ${TEST_PCH})
 set_target_properties(${UNIT_TEST_TARGET} PROPERTIES DEBUG_POSTFIX _d)
-target_include_directories(${UNIT_TEST_TARGET} PRIVATE ${TEST_DIR}/include)
+target_include_directories(${UNIT_TEST_TARGET} PRIVATE ${TEST_DIR}/include ${TEST_DIR}/src)
 
 target_link_libraries(${UNIT_TEST_TARGET} ${PROJECT_NAME})
 target_include_directories(${UNIT_TEST_TARGET} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/deps/googletest/googletest/include)

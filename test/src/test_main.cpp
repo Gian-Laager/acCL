@@ -1,12 +1,4 @@
-//
-// Created by Gian Laager on 13.08.20.
-//
-#include "test_pch.h"
-
-TEST(InitialTest, WillTestFunctionInLibraryReturnOne)
-{
-    ASSERT_EQ(test(), 1);
-}
+#include "unit_tests.h"
 
 int main()
 {

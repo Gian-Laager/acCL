@@ -1,7 +1,8 @@
 #include "acCL.h"
 
-int test()
+const char* ac::cl::errors::clError::what() const noexcept
 {
-    std::cout << "Hello, World!" << std::endl;
-    return 1;
+    return message.c_str();
 }
+
+ac::cl::errors::clError::clError(std::string msg) : message(std::move(msg)) {}
